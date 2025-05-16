@@ -16,7 +16,7 @@ interface BookingState {
 export const useBookingStore = create<BookingState>((set) => ({
   bookings: [],
   fetchBookings: async () => {
-    const res = await axios.get('http://localhost:3000/api/bookings');
+    const res = await axios.get('http://localhost:3000/booking');
     set({ bookings: res.data });
   },
 }));

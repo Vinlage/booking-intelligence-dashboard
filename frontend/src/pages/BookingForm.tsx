@@ -33,7 +33,7 @@ export function BookingForm({ onSubmit }: BookingFormProps) {
     e.preventDefault();
     const parsedForm = bookingSchema.parse(form);
 
-    const response = await fetch("http://localhost:3000/api/bookings", {
+    const response = await fetch("http://localhost:3000/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
