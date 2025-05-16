@@ -1,36 +1,28 @@
 import type { Booking } from "../store/useBookingStore"
-import '../styles/dashboard.scss'
+import { BookingForm } from "../pages/BookingForm"
 
 interface DashboardProps {
     bookings: Booking[];
 }
 
-const Dashboard = ({ bookings }: DashboardProps) => {
+export default function Dashboard({ bookings }: DashboardProps) {
+  const handleNewBooking = (booking: Omit<Booking, 'id'>) => {
+    console.log("New booking created:", booking);
+  }
+
   return (
     <div className="dashboard">
-      <h1>Booking Intelligence Dashboard</h1>
-      {bookings.length === 0 ? (
-        <p>Loading bookings...</p>
-      ) : (
-        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-          <thead>
-            <tr>
-              <th>Customer</th>
-              <th>Risk</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td>{booking.customer}</td>
-                <td>Risk: {booking.risk}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      <BookingForm onSubmit={handleNewBooking} />
+      <h2>Agendamentos</h2>
+      <div className="bookings-list">
+        {bookings.map((booking) => (
+          <div key={booking.id} className="booking-item">
+            <p>Paciente: {booking.patient}</p>
+            <p>Terapeuta: {booking.therapist}</p>
+            <p>Data: {booking.date}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
-}
-
-export default Dashboard;
+};

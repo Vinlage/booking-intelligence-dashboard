@@ -10,7 +10,8 @@ function App() {
     }, [fetchBookings]);
 
     return (
-        <div className="app">
+        <div className="min-h-screen bg-gray-100 p-6">
+            <h1>Therapy Booking</h1>
             <Dashboard bookings={bookings} />
         </div>
     );

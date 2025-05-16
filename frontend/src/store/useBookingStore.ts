@@ -3,8 +3,9 @@ import axios from 'axios';
 
 export interface Booking {
   id: string;
-  customer: string;
-  risk: string;
+  patient: string;
+  therapist: string;
+  date: string;
 }
 
 interface BookingState {
