@@ -1,13 +1,30 @@
 import express from 'express'
 const router = express.Router()
 
+interface Booking {
+  id: number;
+  patient: string;
+  therapist: string;
+  date: string;
+}
+
+const mockBookings: Booking[] = [];
+let idcounter = 1;
+
 router.get('/', async (req, res) => {
-  res.json([
-    { id: 1, customer: 'John Doe', risk: 0.1 },
-    { id: 2, customer: 'Jane Smith', risk: 0.5 },
-    { id: 3, customer: 'Alice Johnson', risk: 0.8 },
-    { id: 4, customer: 'Bob Brown', risk: 0.3 },
-  ])
+  res.json(mockBookings)
+})
+
+router.post('/', async (req, res) => {
+  const newBooking = req.body;
+
+  if (!newBooking || !newBooking.patient || !newBooking.therapist || !newBooking.date) {
+    return res.status(400).json({ error: 'Invalid booking data' });
+  }
+
+  newBooking.id = idcounter++;
+  mockBookings.push(newBooking);
+  res.status(201).json({ message: 'Booking created', booking: newBooking });
 })
 
 export default router
