@@ -1,5 +1,6 @@
 import type { Booking } from "../store/useBookingStore"
 import { BookingForm } from "../pages/BookingForm"
+import { BookingList } from "./BookingList";
 
 interface DashboardProps {
     bookings: Booking[];
@@ -13,16 +14,7 @@ export default function Dashboard({ bookings }: DashboardProps) {
   return (
     <div className="dashboard">
       <BookingForm onSubmit={handleNewBooking} />
-      <h2>Agendamentos</h2>
-      <div className="bookings-list">
-        {bookings.map((booking) => (
-          <div key={booking.id} className="booking-item">
-            <p>Paciente: {booking.patient}</p>
-            <p>Terapeuta: {booking.therapist}</p>
-            <p>Data: {booking.date}</p>
-          </div>
-        ))}
-      </div>
+      <BookingList bookings={bookings} />
     </div>
   )
 };

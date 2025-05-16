@@ -63,29 +63,32 @@ export function BookingForm({ onSubmit }: BookingFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="booking-form">
+    <form onSubmit={handleSubmit} 
+      className="max-w-full mx-auto bg-white p-6 rounded-2xl shadow-md space-y-4"
+    >
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">New Booking</h2>
       <input
-        className="border p-2 w-full rounded mb-2"
+        className="max-w-full border p-2 w-md rounded mb-4 block shadow-md"
         type="text"
         name="patient"
-        placeholder="Nome do paciente"
+        placeholder="Patient Name"
         value={form.patient}
         onChange={handleChange}
       />
       {errors.patient && <p>{errors.patient}</p>}
 
       <input
-        className="border p-2 w-full rounded mb-2"
+        className="max-w-full border p-2 w-md rounded mb-4 block shadow-md"
         type="text"
         name="therapist"
-        placeholder="Nome do terapeuta"
+        placeholder="Therapist Name"
         value={form.therapist}
         onChange={handleChange}
       />
       {errors.therapist && <p>{errors.therapist}</p>}
 
       <input
-        className="border p-2 w-full rounded mb-2"
+        className="max-w-full border p-2 w-md rounded mb-4 block shadow-md"
         type="datetime-local"
         name="date"
         value={form.date}
@@ -96,7 +99,7 @@ export function BookingForm({ onSubmit }: BookingFormProps) {
       <button type="submit"
         className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
       >
-        Agendar sessão
+        Book Session
       </button>
     </form>
   );
